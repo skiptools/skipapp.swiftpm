@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "5174C969-04DD-4A96-95F8-495187F75DA4",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AppTests",
+        "name" : "AppTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AppKtTests",
+        "name" : "AppKtTests"
+      }
+    }
+  ],
+  "version" : 1
+}
