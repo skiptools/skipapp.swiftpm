@@ -1,0 +1,21 @@
+# skip.yml file for example app
+
+build:
+  contents:
+    - block: 'plugins'
+      contents:
+        - 'id("com.android.application") version "8.0.1"'
+      remove:
+        - 'id("com.android.library") version "8.0.1"'
+    - block: 'android'
+      contents:
+        - 'namespace = "app.demo"'
+        - block: 'defaultConfig'
+          contents:
+            - 'applicationId = "app.demo"'
+            - 'versionCode = 1'
+            - 'versionName = "1.0"'
+        - block: 'packaging'
+          # merge rules for resources with the same name
+          contents:
+            - 'resources.pickFirsts.add("META-INF/LGPL2.1")'

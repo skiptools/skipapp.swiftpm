@@ -1,0 +1,13 @@
+// This is free software: you can redistribute and/or modify it
+// under the terms of the GNU Lesser General Public License 3.0
+// as published by the Free Software Foundation https://fsf.org
+import SwiftUI
+import AppDemo
+
+@main
+struct DemoAppMain : App {
+    let appDemo = AppDemo.DemoApp()
+    var body: some Scene {
+        appDemo
+    }
+}
