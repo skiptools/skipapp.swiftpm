@@ -1,8 +1,11 @@
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
-import SwiftUI
+import SkipUI
+import SkipKit
+import JavaScriptCore
 import Foundation
+import OSLog
 
 // SKIP INSERT: import androidx.compose.runtime.*
 // SKIP INSERT: import androidx.activity.compose.*
@@ -12,6 +15,8 @@ import Foundation
 // SKIP INSERT: import androidx.compose.foundation.*
 // SKIP INSERT: import androidx.compose.foundation.layout.*
 // SKIP INSERT: import androidx.compose.foundation.lazy.*
+
+let logger: Logger = Logger(subsystem: "app.demo", category: "App")
 
 protocol AppDemoView {
 }
@@ -37,14 +42,8 @@ public struct DemoApp: Scene {
 
     public var body: some Scene {
         WindowGroup {
-            DemoAppBaseView()
+            RootView()
         }
-    }
-}
-
-public struct DemoAppBaseView: View {
-    public var body: some View {
-        RootView()
     }
 }
 
@@ -53,7 +52,7 @@ public struct DemoAppBaseView: View {
 
 // SKIP DECLARE: @Composable fun AhoyView()
 struct AhoyView : View {
-    // SKIP REPLACE: Text("Ahoy Skipper!", style = MaterialTheme.typography.h3)
+    // SKIP REPLACE: Text("Ahoy Skipper!", style = MaterialTheme.typography.h5)
     var body: some View {
         Text("Ahoy Skipper!")
     }
@@ -62,16 +61,17 @@ struct AhoyView : View {
 #if SKIP
 
 // SKIP INSERT: @Composable
-// SKIP INSERT: @OptIn(ExperimentalFoundationApi::class)
-// SKIP INSERT: fun EntriesListView() {
-// SKIP INSERT:     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
-// SKIP INSERT:         stickyHeader { AhoyView() }
-// SKIP INSERT:         items(entries.toList()) { entry ->
-// SKIP INSERT:             EntryView(entry = entry)
-// SKIP INSERT:             Divider()
-// SKIP INSERT:         }
-// SKIP INSERT:     }
-// SKIP INSERT: }
+// @OptIn(ExperimentalFoundationApi::class)
+// fun EntriesListView() {
+//     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
+//         stickyHeader { AhoyView() }
+//         //AhoyView()
+//         itemsIndexed(entries.toList()) { index, entry ->
+//             EntryView(entry = entry)
+//             Divider()
+//         }
+//     }
+// }
 
 // SKIP INSERT: @Composable
 func RootView() {
@@ -91,6 +91,7 @@ struct RootView : View {
                 AhoyView()
             }
         }
+        .listStyle(.automatic)
     }
 }
 #endif
@@ -114,6 +115,7 @@ struct EntryView : View {
 let entries: [Entry] = try! createEntries()
 
 private func createEntries() throws -> [Entry] {
+    logger.warning("creating entries")
     var entries: [Entry] = []
     entries += try leadingEntries()
 
@@ -128,6 +130,10 @@ private func createEntries() throws -> [Entry] {
 private func leadingEntries() throws -> [Entry] {
     [
         Entry(title: "Welcome to Skip!"),
+        Entry(title: "Greetings Matey…"),
+        Entry(title: "Greetings Matey…"),
+        Entry(title: "Greetings Matey…"),
+        Entry(title: "Greetings Matey…"),
         Entry(title: "This is a native List"),
     ]
 }
@@ -135,13 +141,20 @@ private func leadingEntries() throws -> [Entry] {
 private func systemEntries() throws -> [Entry] {
     //let hostname = ProcessInfo.processInfo.hostName // Android error: "android.os.NetworkOnMainThreadException" from "java.net.Inet6AddressImpl.lookupHostByName"
 
+    let sum = try SQLDB().query(sql: "SELECT 'lite'").nextRow(close: true)?.first?.textValue ?? "NONE"
+    //let jsc = try JSContext().evaluateScript("'Java' + 'Script'")?.toString() ?? "NONE"
     return [
-        //Entry(title: "Hostname: \(hostname)")
+        Entry(title: "Int.max: \(Int.max)"),
+        Entry(title: "SQL: \(sum)"),
+        //Entry(title: "JSC: \(jsc)"),
     ]
 }
 
+// make a bunch of random rows to experiment with scrolling
 private func trailingEntries(count: Int = 1000) throws -> [Entry] {
-    Array((1...count).map { i in
+    logger.debug("creating \(count) trailing entries")
+
+    return Array((1...count).map { i in
         Entry(title: "Trailing Entry \(i)")
     })
 }
