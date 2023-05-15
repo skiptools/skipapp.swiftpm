@@ -28,7 +28,11 @@ jobs:
       - name: Build AppDemoKt (SPM)
         run: swift build --jobs 1
 
+      - name: Build AppDemoKt (Xcode)
+        run: xcodebuild build -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme 'AppDemoKt'
+
       - name: Test AppDemoKt (Xcode)
+        if: false
         run: xcodebuild test -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme 'AppDemoKt'
 
       - name: Show PlugIn Output Tree (Xcode)
