@@ -5,7 +5,31 @@
 // Do not edit it by hand because the contents will be replaced.
 
 import PackageDescription
+#if canImport(AppleProductTypes)
 import AppleProductTypes
+let products: [Product] = [
+    .iOSApplication(
+        name: "Demo App",
+        targets: ["DemoApp"],
+        displayVersion: "1.0",
+        bundleVersion: "1",
+        accentColor: .presetColor(.green),
+        supportedDeviceFamilies: [
+            .pad,
+            .phone
+        ],
+        supportedInterfaceOrientations: [
+            .portrait,
+            .landscapeRight,
+            .landscapeLeft,
+            .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+        ]
+    )
+]
+#else
+let products: [Product] = [
+]
+#endif
 
 let package = Package(
     name: "Demo App",
@@ -16,25 +40,7 @@ let package = Package(
         .watchOS("8"),
         .macCatalyst("16")
     ],
-    products: [
-        .iOSApplication(
-            name: "Demo App",
-            targets: ["DemoApp"],
-            displayVersion: "1.0",
-            bundleVersion: "1",
-            accentColor: .presetColor(.green),
-            supportedDeviceFamilies: [
-                .pad,
-                .phone
-            ],
-            supportedInterfaceOrientations: [
-                .portrait,
-                .landscapeRight,
-                .landscapeLeft,
-                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ]
-        )
-    ],
+    products: products,
     dependencies: [
         .package(url: "https://github.com/skiptools/skip.git", from: "0.0.0"),
         .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
