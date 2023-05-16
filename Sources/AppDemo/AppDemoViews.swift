@@ -7,35 +7,23 @@ import JavaScriptCore
 import Foundation
 import OSLog
 
+// SKIP INSERT: import androidx.appcompat.app.AppCompatActivity
 // SKIP INSERT: import androidx.compose.runtime.*
 // SKIP INSERT: import androidx.activity.compose.*
 // SKIP INSERT: import androidx.compose.ui.*
 // SKIP INSERT: import androidx.compose.material.*
+// SKIP INSERT: import androidx.compose.ui.text.*
+// SKIP INSERT: import androidx.compose.ui.text.style.*
+// SKIP INSERT: import androidx.compose.ui.graphics.*
 // SKIP INSERT: import androidx.compose.ui.unit.*
 // SKIP INSERT: import androidx.compose.foundation.*
+// SKIP INSERT: import androidx.compose.foundation.shape.*
 // SKIP INSERT: import androidx.compose.foundation.layout.*
 // SKIP INSERT: import androidx.compose.foundation.lazy.*
 
 let logger: Logger = Logger(subsystem: "app.demo", category: "App")
 
-protocol AppDemoView {
-}
-
-#if SKIP
-class MainActivity : androidx.appcompat.app.AppCompatActivity, AppDemoView {
-    init() {
-    }
-
-    override func onCreate(savedInstanceState: android.os.Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MaterialTheme {
-                RootView()
-            }
-        }
-    }
-}
-#else
+#if !SKIP
 public struct DemoApp: Scene {
     public init() {
     }
@@ -46,30 +34,50 @@ public struct DemoApp: Scene {
         }
     }
 }
+#else
+public class MainActivity : AppCompatActivity {
+    public init() {
+    }
 
+    public override func onCreate(savedInstanceState: android.os.Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                RootView()
+            }
+        }
+    }
+}
 #endif
 
 
 // SKIP DECLARE: @Composable fun AhoyView()
 struct AhoyView : View {
-    // SKIP REPLACE: Text("Ahoy Skipper!", style = MaterialTheme.typography.h5)
-    var body: some View {
-        Text("Ahoy Skipper!")
-    }
+    public let text = "🏴‍☠️ Ahoy Skipper!!!! 🏴‍☠️"
+
+    // SKIP REPLACE: Text(text, style = MaterialTheme.typography.subtitle1, modifier = Modifier.fillMaxWidth())
+    var body: some View { Text(text).font(.subheadline) }
 }
 
 #if SKIP
 
-// SKIP INSERT: @Composable
+// SKIP INSERT:
+// @Composable
 // @OptIn(ExperimentalFoundationApi::class)
 // fun EntriesListView() {
-//     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
+//     Box(modifier = Modifier.fillMaxSize().background(color = Color(0xF1F1F6FF), shape = RoundedCornerShape(0.dp)).padding(16.dp)) {
+//     Box(modifier = Modifier.fillMaxSize().background(color = Color.White, shape = RoundedCornerShape(16.dp)).padding(8.dp)) {
+//     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)) {
 //         stickyHeader { AhoyView() }
 //         //AhoyView()
 //         itemsIndexed(entries.toList()) { index, entry ->
-//             EntryView(entry = entry)
+//             Box(modifier = Modifier.padding(8.dp)) {
+//                 EntryView(entry = entry)
+//             }
 //             Divider()
 //         }
+//     }
+//     }
 //     }
 // }
 
@@ -80,7 +88,8 @@ func RootView() {
 
 
 #else
-struct RootView : View {
+
+struct EntriesListView : View {
     var body: some View {
         List {
             Section {
@@ -91,7 +100,12 @@ struct RootView : View {
                 AhoyView()
             }
         }
-        .listStyle(.automatic)
+    }
+}
+
+struct RootView : View {
+    var body: some View {
+        EntriesListView()
     }
 }
 #endif
@@ -107,33 +121,35 @@ struct EntryView : View {
     let entry: Entry
     #endif
 
-    // SKIP REPLACE: Text(entry.title, style = MaterialTheme.typography.h5)
-    var body: some View { Text(entry.title) }
+    // SKIP REPLACE: Text(entry.title, maxLines = 1, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.subtitle1, modifier = Modifier.fillMaxWidth())
+    var body: some View { Text(entry.title).lineLimit(1).truncationMode(.tail).font(.subheadline).frame(maxWidth: .infinity, alignment: .leading) }
 }
 
 /// The list of entries to be displayed in the app
 let entries: [Entry] = try! createEntries()
 
 private func createEntries() throws -> [Entry] {
-    logger.warning("creating entries")
     var entries: [Entry] = []
-    entries += try leadingEntries()
+    do {
+        logger.info("initializaing app table contents…")
+        entries += try leadingEntries()
 
-    entries += try systemEntries()
+        entries += try systemEntries()
 
-    entries += [Entry(title: "Look how fast we can scroll…")]
-    entries += try trailingEntries()
-
+        entries += [Entry(title: "Look how fast we can scroll…")]
+        entries += try trailingEntries()
+    } catch {
+        logger.error("Error creating entries: \(error)")
+        #if SKIP
+        //error.printStackTrace()
+        #endif
+    }
     return entries
 }
 
 private func leadingEntries() throws -> [Entry] {
     [
         Entry(title: "Welcome to Skip!"),
-        Entry(title: "Greetings Matey…"),
-        Entry(title: "Greetings Matey…"),
-        Entry(title: "Greetings Matey…"),
-        Entry(title: "Greetings Matey…"),
         Entry(title: "This is a native List"),
     ]
 }
@@ -141,13 +157,34 @@ private func leadingEntries() throws -> [Entry] {
 private func systemEntries() throws -> [Entry] {
     //let hostname = ProcessInfo.processInfo.hostName // Android error: "android.os.NetworkOnMainThreadException" from "java.net.Inet6AddressImpl.lookupHostByName"
 
-    let sum = try SQLDB().query(sql: "SELECT 'lite'").nextRow(close: true)?.first?.textValue ?? "NONE"
-    //let jsc = try JSContext().evaluateScript("'Java' + 'Script'")?.toString() ?? "NONE"
-    return [
-        Entry(title: "Int.max: \(Int.max)"),
-        Entry(title: "SQL: \(sum)"),
-        //Entry(title: "JSC: \(jsc)"),
-    ]
+    var entries: [Entry] = []
+
+    do {
+        entries.append(Entry(title: "Int.max: \(Int.max)"))
+    }
+
+    do {
+        let sum = try SQLDB().query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
+        entries.append(Entry(title: "SQL: \(sum)"))
+    }
+
+    #if !SKIP // skip.lib.ErrorException: java.lang.UnsatisfiedLinkError: Native library
+    do {
+        let script = JSContext().evaluateScript("'Scr'+'ipt'").toString() ?? ""
+        entries.append(Entry(title: "Java: \(script)"))
+    }
+    #endif
+
+    do {
+        for (key, value) in ProcessInfo.processInfo.environment {
+            entries.append(Entry(title: "ENV: \(key)=\(value)"))
+        }
+    }
+    do {
+        //let jsc = try JSContext().evaluateScript("'Java' + 'Script'")?.toString() ?? "NONE"
+    }
+
+    return entries
 }
 
 // make a bunch of random rows to experiment with scrolling

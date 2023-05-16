@@ -19,7 +19,8 @@ final class AppKtTests: XCTestCase, XCGradleHarness {
 
         // Verbose/Debug/Info/Warn/Error/Fatal/Silent
         // be verbose with "app.demo:V" and silence everything else ("*:S")
-        try await launchAndroidApp(appid: "app.demo/.MainActivity", log: ["app.demo:V", "app.demo.App:V", "*:S"], apk: "Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk")
+        // Uncaught stack traces go to "AndroidRuntime:V"
+        try await launchAPK(appid: "app.demo/.MainActivity", log: ["app.demo:V", "app.demo.App:V", "AndroidRuntime:V", "*:E"], apk: "Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk")
     }
 }
 
