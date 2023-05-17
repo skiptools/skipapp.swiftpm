@@ -28,6 +28,14 @@ jobs:
       - name: Build AppDemoKt (SPM)
         run: swift build --jobs 1
 
+      - name: Show Gradle Project Tree
+        run: |
+          brew install tree
+          tree -I build -l .build/plugins/outputs
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk
+
       - name: Test AppDemoKt (SPM)
         run: swift test --jobs 1
 
@@ -36,13 +44,8 @@ jobs:
         run: xcodebuild test -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
 
       - name: Show PlugIn Output Tree (Xcode)
-        run: |
-          brew install tree
-          tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
-
-      - name: Show PlugIn Output Tree (SPM)
         if: false
         run: |
           brew install tree
-          tree -I build -l .build/plugins/outputs
+          tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
 
