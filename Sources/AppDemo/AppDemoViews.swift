@@ -7,19 +7,22 @@ import JavaScriptCore
 import Foundation
 import OSLog
 
+// SKIP INSERT: import android.app.Application
 // SKIP INSERT: import androidx.appcompat.app.AppCompatActivity
 // SKIP INSERT: import androidx.compose.runtime.*
 // SKIP INSERT: import androidx.activity.compose.*
 // SKIP INSERT: import androidx.compose.ui.*
-// SKIP INSERT: import androidx.compose.material.*
+// SKIP INSERT: import androidx.compose.ui.unit.*
+// SKIP INSERT: import androidx.compose.ui.geometry.*
+// SKIP INSERT: import androidx.compose.ui.graphics.*
+// SKIP INSERT: import androidx.compose.ui.layout.*
 // SKIP INSERT: import androidx.compose.ui.text.*
 // SKIP INSERT: import androidx.compose.ui.text.style.*
-// SKIP INSERT: import androidx.compose.ui.graphics.*
-// SKIP INSERT: import androidx.compose.ui.unit.*
 // SKIP INSERT: import androidx.compose.foundation.*
 // SKIP INSERT: import androidx.compose.foundation.shape.*
 // SKIP INSERT: import androidx.compose.foundation.layout.*
 // SKIP INSERT: import androidx.compose.foundation.lazy.*
+// SKIP INSERT: import androidx.compose.material.*
 
 let logger: Logger = Logger(subsystem: "app.demo", category: "App")
 
@@ -35,7 +38,17 @@ public struct DemoApp: Scene {
     }
 }
 #else
-public class MainActivity : AppCompatActivity {
+public class SkipApp : android.app.Application {
+    public init() {
+    }
+
+    public override func onCreate() {
+        super.onCreate()
+        ProcessInfo.launch(applicationContext)
+    }
+}
+
+public class MainActivity : androidx.appcompat.app.AppCompatActivity {
     public init() {
     }
 
@@ -61,25 +74,30 @@ struct AhoyView : View {
 
 #if SKIP
 
-// SKIP INSERT:
-// @Composable
-// @OptIn(ExperimentalFoundationApi::class)
-// fun EntriesListView() {
-//     Box(modifier = Modifier.fillMaxSize().background(color = Color(0xF1F1F6FF), shape = RoundedCornerShape(0.dp)).padding(16.dp)) {
-//     Box(modifier = Modifier.fillMaxSize().background(color = Color.White, shape = RoundedCornerShape(16.dp)).padding(8.dp)) {
-//     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)) {
-//         stickyHeader { AhoyView() }
-//         //AhoyView()
-//         itemsIndexed(entries.toList()) { index, entry ->
-//             Box(modifier = Modifier.padding(8.dp)) {
-//                 EntryView(entry = entry)
-//             }
-//             Divider()
-//         }
-//     }
-//     }
-//     }
-// }
+/* SKIP INSERT:
+@Composable
+@OptIn(ExperimentalFoundationApi::class)
+fun EntriesListView() {
+    Box(modifier = Modifier.fillMaxSize().background(color = Color(0xF1F1F6FF), shape = RoundedCornerShape(0.dp)).padding(16.dp)) {
+        Box(modifier = Modifier.fillMaxSize().background(color = Color.White, shape = RoundedCornerShape(16.dp)).padding(8.dp)) {
+            LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)) {
+                stickyHeader {
+                    Box {
+                        HeaderBackgroundCanvasView()
+                        AhoyView()
+                    }
+                }
+                itemsIndexed(entries.toList()) { index, entry ->
+                    Box(modifier = Modifier.padding(8.dp)) {
+                        EntryView(entry = entry)
+                    }
+                    Divider()
+                }
+            }
+        }
+    }
+}
+*/
 
 // SKIP INSERT: @Composable
 func RootView() {
@@ -97,7 +115,10 @@ struct EntriesListView : View {
                     EntryView(entry: entry)
                 }
             } header: {
-                AhoyView()
+                ZStack {
+                    HeaderBackgroundCanvasView()
+                    AhoyView()
+                }
             }
         }
     }
@@ -108,6 +129,7 @@ struct RootView : View {
         EntriesListView()
     }
 }
+
 #endif
 
 public struct Entry: Identifiable, Equatable, Hashable {
@@ -124,6 +146,29 @@ struct EntryView : View {
     // SKIP REPLACE: Text(entry.title, maxLines = 1, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.subtitle1, modifier = Modifier.fillMaxWidth())
     var body: some View { Text(entry.title).lineLimit(1).truncationMode(.tail).font(.subheadline).frame(maxWidth: .infinity, alignment: .leading) }
 }
+
+// SKIP DECLARE: @Composable fun HeaderBackgroundCanvasView()
+struct HeaderBackgroundCanvasView : View {
+    #if !SKIP
+    var body: some View { skipBody() }
+    #endif
+
+    // SKIP DECLARE: run
+    public func skipBody() -> some View {
+        #if SKIP // Compose Canvas
+        Canvas(modifier: Modifier.fillMaxWidth().height(25.dp)) {
+            drawRect(color = Color.Yellow, alpha = Float(0.8), size: size)
+            drawCircle(color = Color.Red, radius: size.height / 2, center: Offset(size.width - size.height, size.height / 2), alpha: Float(0.5))
+        }
+        #else // SwiftUI Canvas
+        Canvas { ctx, size in
+            ctx.fill(Path(roundedRect: CGRect(origin: .zero, size: size), cornerSize: .zero), with: .color(Color.yellow))
+            ctx.fill(Path(ellipseIn: CGRect(origin: CGPoint(x: size.width - size.height, y: 0), size: CGSize(width: size.height, height: size.height))), with: .color(Color.red.opacity(0.5)))
+        }
+        #endif
+    }
+}
+
 
 /// The list of entries to be displayed in the app
 let entries: [Entry] = try! createEntries()
@@ -150,7 +195,10 @@ private func createEntries() throws -> [Entry] {
 private func leadingEntries() throws -> [Entry] {
     [
         Entry(title: "Welcome to Skip!"),
-        Entry(title: "This is a native List"),
+        Entry(title: "Today is \(Date())"),
+        Entry(title: "OS: \(ProcessInfo.processInfo.operatingSystemVersionString)"),
+        //Entry(title: "Name: \(ProcessInfo.processInfo.processName)"),
+        Entry(title: "Processor Count: \(ProcessInfo.processInfo.processorCount)"),
     ]
 }
 
@@ -164,7 +212,9 @@ private func systemEntries() throws -> [Entry] {
     }
 
     do {
-        let sum = try SQLDB().query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
+        let db = try SQLDB()
+        defer { db.close() }
+        let sum = try db.query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
         entries.append(Entry(title: "SQL: \(sum)"))
     }
 
@@ -175,6 +225,29 @@ private func systemEntries() throws -> [Entry] {
     }
     #endif
 
+    #if SKIP
+    func addSystemProperty(_ key: String) {
+        let value = System.getProperty(key)
+        logger.info("addSystemProperty: \(key)=\(value)")
+        entries.append(Entry(title: "\(key): \(value)"))
+    }
+
+    addSystemProperty("os.name") // "Linux"
+    addSystemProperty("os.arch") // "aarch64"
+    addSystemProperty("os.version") // device: "4.19.191-26242230-abA037USQU3DWD1" emu: "5.15.41-android13-8-00055-g4f5025129fe8-ab8949913"
+    addSystemProperty("java.vendor") // "The Android Project"
+    addSystemProperty("java.version") // "0"
+    addSystemProperty("user.home") // ""
+    addSystemProperty("user.name") // "root"
+    addSystemProperty("java.vm.version") // "2.1.0"
+    addSystemProperty("java.vm.name") // "Dalvik"
+    addSystemProperty("line.separator") // "\n"
+    addSystemProperty("java.io.tmpdir") // "/data/user/0/app.demo/cache"
+    addSystemProperty("java.library.path") // "/system/lib64:/system/system_ext/lib64"
+    addSystemProperty("ro.kernel.qemu") // device: null
+
+    #endif
+    
     do {
         for (key, value) in ProcessInfo.processInfo.environment {
             entries.append(Entry(title: "ENV: \(key)=\(value)"))

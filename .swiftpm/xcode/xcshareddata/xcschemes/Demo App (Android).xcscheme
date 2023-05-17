@@ -44,6 +44,23 @@
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "SKIP_GRADLE_TEST_TARGET"
+            value = "connectedDebugAndroidTest"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SKIP_TEST_DEVICE"
+            value = "adb-R9TT50AJWEX-F9Ujyu._adb-tls-connect._tcp."
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SKIP_TEST_DEVICE"
+            value = "emulator-5554"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

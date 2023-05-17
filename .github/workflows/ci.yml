@@ -28,17 +28,17 @@ jobs:
       - name: Build AppDemoKt (SPM)
         run: swift build --jobs 1
 
+      - name: Test AppDemoKt (SPM)
+        run: swift test --jobs 1
+
       - name: Test AppDemoKt (Xcode)
+        if: false
         run: xcodebuild test -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
 
       - name: Show PlugIn Output Tree (Xcode)
         run: |
           brew install tree
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
-
-      - name: Test AppDemoKt (SPM)
-        if: false
-        run: swift test --jobs 1
 
       - name: Show PlugIn Output Tree (SPM)
         if: false
