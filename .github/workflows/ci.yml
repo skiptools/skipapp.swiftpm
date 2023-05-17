@@ -32,12 +32,16 @@ jobs:
         run: |
           brew install tree
           tree -I build -l .build/plugins/outputs
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk
 
       - name: Test AppDemoKt (SPM)
         run: swift test --jobs 1
+
+      - name: Show Gradle Build Tree
+        run: |
+          tree -I build -l .build/plugins/outputs
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/
+          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk
 
       - name: Test AppDemoKt (Xcode)
         if: false
