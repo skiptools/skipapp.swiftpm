@@ -47,6 +47,10 @@ jobs:
         if: false
         run: xcodebuild test -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
 
+      - name: Build iOS App
+        run: |
+          xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath .build/App.xcarchive -configuration 'Debug' -scheme 'Demo App' -sdk 'iphoneos' -destination 'platform=iOS'
+
       - name: Show PlugIn Output Tree (Xcode)
         if: false
         run: |

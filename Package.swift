@@ -11,6 +11,8 @@ let products: [Product] = [
     .iOSApplication(
         name: "Demo App",
         targets: ["DemoApp"],
+        bundleIdentifier: "app.demo",
+        //teamIdentifier: "",
         displayVersion: "1.0",
         bundleVersion: "1",
         accentColor: .presetColor(.green),
@@ -23,7 +25,13 @@ let products: [Product] = [
             .landscapeRight,
             .landscapeLeft,
             .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-        ]
+        ],
+        // see https://gist.github.com/treastrain/2f21d42c360dc9b9876ddde125abe247#file-appleproducttypes-swift-L453
+        capabilities: [
+            .outgoingNetworkConnections(),
+        ],
+        appCategory: .utilities,
+        additionalInfoPlistContentFilePath: nil
     )
 ]
 #else
@@ -49,8 +57,7 @@ let package = Package(
         .executableTarget(
             name: "DemoApp",
             dependencies: [
-                "AppDemo",
-                "AppDemoKt"
+                "AppDemo"
             ],
             resources: [
                 .process("Resources")
