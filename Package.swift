@@ -68,7 +68,7 @@ let package = Package(
                 .product(name: "SkipUI", package: "skiphub")
             ],
             plugins: [
-                .plugin(name: "preflight", package: "skip")
+                //.plugin(name: "preflight", package: "skip")
             ]
         ),
         .testTarget(
