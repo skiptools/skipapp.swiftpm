@@ -39,7 +39,7 @@ jobs:
           These are the checksums for the release artifacts:
           EOF
 
-          echo "```" >> .build/skip-artifacts/relnotes.md
+          echo '```' >> .build/skip-artifacts/relnotes.md
 
           brew install tree
 
@@ -121,7 +121,7 @@ jobs:
           cd .build/skip-artifacts/
 
           # finish the checksums block in the release notes
-          echo "```" >> relnotes.md
+          echo '```' >> relnotes.md
 
           gh release create "${TAG}" --prerelease --title "Release ${TAG}" -F relnotes.md
           gh release upload "${TAG}" -- *.*
