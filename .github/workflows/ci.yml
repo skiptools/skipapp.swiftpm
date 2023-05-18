@@ -34,6 +34,13 @@ jobs:
       - name: Prepare Artifacts
         run: |
           mkdir -p .build/skip-artifacts/
+
+          cat > .build/skip-artifacts/relnotes.md << EOF
+          These are the checksums for the release artifacts:
+          EOF
+
+          echo "```" >> .build/skip-artifacts/relnotes.md
+
           brew install tree
 
       - name: Build AppDemoKt (SPM)
@@ -55,12 +62,12 @@ jobs:
           ARTIFACTNAME="App-Android-Debug.apk"
           ls -la "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> releasenotes.txt
+          cat "${ARTIFACTNAME}.sha256" >> relnotes.md
 
           ARTIFACTNAME="App-Android-Release.apk"
           ls -la "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> releasenotes.txt
+          cat "${ARTIFACTNAME}.sha256" >> relnotes.md
 
       - name: Test AppDemoKt (Xcode)
         if: false
@@ -88,7 +95,7 @@ jobs:
             cd .build/skip-artifacts/
             ls -la "${APPARTIFACT}.ipa"
             shasum -a 256 "${APPARTIFACT}.ipa" | tee "${APPARTIFACT}.ipa.sha256"
-            cat "${APPARTIFACT}.ipa.sha256" >> releasenotes.txt
+            cat "${APPARTIFACT}.ipa.sha256" >> relnotes.md
             cd -
           }
 
@@ -109,10 +116,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Creating release: ${GITHUB_REF#refs/tags/}"
+          TAG="${GITHUB_REF#refs/tags/}"
+          echo "Creating release: ${TAG}"
           cd .build/skip-artifacts/
-          gh release create "${GITHUB_REF#refs/tags/}" --prerelease --title "Release ${GITHUB_REF#refs/tags/}" -F releasenotes.txt
-          gh release upload "${GITHUB_REF#refs/tags/}" -- *.*
+
+          # finish the checksums block in the release notes
+          echo "```" >> relnotes.md
+
+          gh release create "${TAG}" --prerelease --title "Release ${TAG}" -F relnotes.md
+          gh release upload "${TAG}" -- *.*
 
       - name: "Upload Build Artifacts"
         # upload the artifacts generated from each build
