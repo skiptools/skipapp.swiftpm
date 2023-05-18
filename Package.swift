@@ -26,7 +26,6 @@ let products: [Product] = [
             .landscapeLeft,
             .portraitUpsideDown(.when(deviceFamilies: [.pad]))
         ],
-        // see https://gist.github.com/treastrain/2f21d42c360dc9b9876ddde125abe247#file-appleproducttypes-swift-L453
         capabilities: [
             .outgoingNetworkConnections(),
         ],
