@@ -25,23 +25,34 @@ jobs:
       - name: Check skiptool
         run: swift package --disable-sandbox --allow-writing-to-package-directory skip info
 
+      - name: Prepare Artifacts
+        run: |
+          mkdir -p .build/artifacts/
+          brew install tree
+
       - name: Build AppDemoKt (SPM)
         run: swift build --jobs 1
-
-      - name: Show Gradle Project Tree
-        run: |
-          brew install tree
-          tree -I build -l .build/plugins/outputs
 
       - name: Test AppDemoKt (SPM)
         run: swift test --jobs 1
 
-      - name: Show Gradle Build Tree
+      - name: Copy Android Artifacts
         run: |
           tree -I build -l .build/plugins/outputs
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/
-          ls -lah .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk
+          cp -a .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk .build/artifacts/AppDemo-Android-Release.apk
+          cp -a .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk .build/artifacts/AppDemo-Android-Debug.apk
+
+          cd .build/artifacts/
+
+          ARTIFACTNAME="AppDemo-Android-Debug.apk"
+          ls -la "${ARTIFACTNAME}"
+          shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
+          cat "${ARTIFACTNAME}.sha256" >> releasenotes.txt
+
+          ARTIFACTNAME="AppDemo-Android-Release.apk"
+          ls -la "${ARTIFACTNAME}"
+          shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
+          cat "${ARTIFACTNAME}.sha256" >> releasenotes.txt
 
       - name: Test AppDemoKt (Xcode)
         if: false
@@ -58,7 +69,6 @@ jobs:
 
           xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO || echo "archive failed"
 
-          mkdir -p .build/release/
           cd .build/"${APPARTIFACT}".xcarchive/Products/
 
           mv "Applications" "Payload"
@@ -66,9 +76,9 @@ jobs:
 
           # create the zip file with predictable timestamps
           find "Payload" -exec touch -d "${COMMITDATE:0:19}" {} \;
-          ditto -c -k --sequesterRsrc --keepParent "Payload" ../../release/"${APPARTIFACT}.ipa"
+          ditto -c -k --sequesterRsrc --keepParent "Payload" ../../artifacts/"${APPARTIFACT}.ipa"
 
-          cd ../../release/
+          cd ../../artifacts/
           ls -la "${APPARTIFACT}.ipa"
           shasum -a 256 "${APPARTIFACT}.ipa" | tee "${APPARTIFACT}.ipa.sha256"
           cat "${APPARTIFACT}.ipa.sha256" >> releasenotes.txt
@@ -77,4 +87,11 @@ jobs:
         run: |
           #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
+
+      - name: "Upload Build Artifacts"
+        # upload the artifacts generated from each build
+        uses: actions/upload-artifact@v3
+        if: always()
+        with: 
+          path: .build/artifacts/
 
