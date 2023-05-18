@@ -12,6 +12,9 @@ on:
   schedule:
     - cron:  '0 1,7,13,23 * * *'
 
+permissions:
+  contents: write
+
 jobs:
   skip-template-tests:
     runs-on: macos-13
@@ -103,6 +106,8 @@ jobs:
 
       - name: "Create Release"
         if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo "Creating release: ${GITHUB_REF#refs/tags/}"
           cd .build/skip-artifacts/
