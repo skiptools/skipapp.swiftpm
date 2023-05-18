@@ -4,8 +4,11 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_14.3.app/Contents/Developer
 
 on:
-  push:
+  push: 
+    #branches: [ main ]
     branches: '*'
+    tags: "[0-9]+.[0-9]+.[0-9]+"
+
   schedule:
     - cron:  '0 1,7,13,23 * * *'
 
