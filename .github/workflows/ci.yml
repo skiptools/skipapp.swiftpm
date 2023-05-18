@@ -54,9 +54,12 @@ jobs:
           xcodebuild build -jobs 1 -skipPackagePluginValidation -configuration 'Release' -scheme 'Demo App' -sdk 'iphoneos' -destination 'platform=iOS' || echo xcodebuild build failed
           xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath .build/App-Release.xcarchive -configuration 'Release' -scheme 'Demo App' -sdk 'iphoneos' -destination 'platform=iOS' || echo xcodebuild test failed
 
+      - name: Package iOS App
+        run: |
+          du -skh .build/App*.xcarchive/
+          tree -h .build/App*.xcarchive/
+
       - name: Show PlugIn Output Tree (Xcode)
         run: |
-          du -skh .build/App.xcarchive/Products/Applications/Demo\ App.app
-          brew install tree
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
 
