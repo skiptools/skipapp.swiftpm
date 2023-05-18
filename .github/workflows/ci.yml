@@ -1,4 +1,4 @@
-name: Skip DemoApp CI
+name: Skip App CI
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_14.3.app/Contents/Developer
@@ -43,6 +43,8 @@ jobs:
           cp -a .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk .build/skip-artifacts/App-Android-Debug.apk
 
           cd .build/skip-artifacts/
+
+          ls -lah
 
           ARTIFACTNAME="AppDemo-Android-Debug.apk"
           ls -la "${ARTIFACTNAME}"
