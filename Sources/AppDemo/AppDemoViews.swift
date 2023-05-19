@@ -216,7 +216,7 @@ private func systemEntries() throws -> [Entry] {
     }
 
     do {
-        let db = try SQLDB()
+        let db = try SQLContext()
         defer { db.close() }
         let sum = try db.query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
         entries.append(Entry(title: "SQL: \(sum)"))
