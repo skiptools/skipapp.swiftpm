@@ -112,10 +112,10 @@ jobs:
           #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
           cd .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/
-          cp -a AppDemo App
-          zip -r ../../../../../skip-artifacts/"${ARTIFACTNAME}" App/ -x "App/.gradle" -x "App/*/.build" -x "App/*/build"
+          zip -r ../../../../../skip-artifacts/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
           cd ../../../../../skip-artifacts/
 
+          unzip -t "${ARTIFACTNAME}"
           ls -lah "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
           cat "${ARTIFACTNAME}.sha256" >> relnotes.md
