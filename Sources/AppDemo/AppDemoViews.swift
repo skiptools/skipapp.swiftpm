@@ -183,6 +183,10 @@ private func createEntries() throws -> [Entry] {
 
         entries += [Entry(title: "Look how fast we can scroll…")]
         entries += try trailingEntries()
+
+        //logger.warning("ABOUT TO ASSERT")
+        //assert(false)
+        //logger.warning("DONE WITH ASSERT")
     } catch {
         logger.error("Error creating entries: \(error)")
         #if SKIP

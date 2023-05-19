@@ -26,7 +26,13 @@ final class AppKtTests: XCTestCase, XCGradleHarness {
             // Verbose/Debug/Info/Warn/Error/Fatal/Silent
             // be verbose with "app.demo:V" and silence everything else ("*:S")
             // Uncaught stack traces go to "AndroidRuntime:V"
-            try await launchAPK(device: device, appid: "app.demo/.MainActivity", log: ["app.demo:V", "app.demo.App:V", "AndroidRuntime:V", "*:S"], apk: "Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk")
+
+            // FIXME: ADB> adb: failed to install /opt/src/github/skiptools/skipapp.swiftpm/Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk: Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES: Failed to collect certificates from /data/app/vmdl1452858066.tmp/base.apk: Attempt to get length of null array]
+            //let apk = "Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk"
+            let apk = "Packages/Skip/skipapp.swiftpm.output/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk"
+
+            try await launchAPK(device: device, appid: "app.demo/.MainActivity", log: ["app.demo:V", "app.demo.App:V", "AndroidRuntime:V", "*:S"],
+                apk: apk)
         } else {
             try await gradle(actions: ["test"])
         }
