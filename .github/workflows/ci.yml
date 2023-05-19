@@ -112,6 +112,8 @@ jobs:
           #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
           cd .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/
+          # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
+          rm -rf .gradle .build */.build
           zip -r ../../../../../skip-artifacts/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
           cd ../../../../../skip-artifacts/
 
