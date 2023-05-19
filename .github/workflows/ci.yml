@@ -75,10 +75,11 @@ jobs:
 
       - name: Package iOS App
         run: |
+          COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
+
           # the function to run to create different archive variants
           build_archive() {
             APPARTIFACT="${APPNAME}-${APPPLATFORM}-${APPCONFIG}"
-            COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
 
             xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO || echo "archive failed"
 
@@ -87,7 +88,7 @@ jobs:
             mv "Applications" "Payload"
             tree -h .
 
-            # create the zip file with predictable timestamps
+            # create the zip file with predictable timestamps for reproducible content
             find "Payload" -exec touch -d "${COMMITDATE:0:19}" {} \;
             ditto -c -k --sequesterRsrc --keepParent "Payload" ../../skip-artifacts/"${APPARTIFACT}.ipa"
             cd -
@@ -108,12 +109,15 @@ jobs:
 
       - name: Assemble Kotlin Source Release
         run: |
+          COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
           ARTIFACTNAME="App-Android-source.zip"
           #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
           cd .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/
           # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
           rm -rf .gradle .build */.build
+          # create the zip file with predictable timestamps for reproducible content
+          find . -exec touch -d "${COMMITDATE:0:19}" {} \;
           zip -r ../../../../../skip-artifacts/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
           cd ../../../../../skip-artifacts/
 
