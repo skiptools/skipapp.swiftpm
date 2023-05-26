@@ -110,7 +110,7 @@ jobs:
       - name: Assemble Kotlin Source Release
         run: |
           COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
-          ARTIFACTNAME="App-Android-source.zip"
+          ARTIFACTNAME="App-Android-Source.zip"
           #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.swiftpm.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
           cd .build/plugins/outputs/skipapp.swiftpm/AppDemoKtTests/skip-transpiler/
