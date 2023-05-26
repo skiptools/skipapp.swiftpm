@@ -1,0 +1,27 @@
+// Localized Indonesian (Indonesia) strings
+"Welcome" = "Selamat datang";
+"Home" = "Beranda";
+"Settings" = "Pengaturan";
+"Profile" = "Profil";
+"Save" = "Simpan";
+"Cancel" = "Batal";
+"Continue" = "Lanjutkan";
+"Search" = "Cari";
+"Notifications" = "Notifikasi";
+"Error" = "Kesalahan";
+"Retry" = "Coba lagi";
+"Loading" = "Memuat";
+"Share" = "Bagikan";
+"Edit" = "Edit";
+"Delete" = "Hapus";
+"Done" = "Selesai";
+"Back" = "Kembali";
+"Next" = "Selanjutnya";
+"Accept" = "Terima";
+"Reject" = "Tolak";
+"Yes" = "Ya";
+"No" = "Tidak";
+"OK" = "OK";
+"Close" = "Tutup";
+"Sign in" = "Masuk";
+"Sign up" = "Daftar";

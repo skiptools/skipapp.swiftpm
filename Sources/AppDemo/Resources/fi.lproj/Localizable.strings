@@ -1,0 +1,27 @@
+// Localized Finnish (suomi) strings
+"Welcome" = "Tervetuloa";
+"Home" = "Koti";
+"Settings" = "Asetukset";
+"Profile" = "Profiili";
+"Save" = "Tallenna";
+"Cancel" = "Peruuta";
+"Continue" = "Jatka";
+"Search" = "Etsi";
+"Notifications" = "Ilmoitukset";
+"Error" = "Virhe";
+"Retry" = "Yritä uudelleen";
+"Loading" = "Ladataan";
+"Share" = "Jaa";
+"Edit" = "Muokkaa";
+"Delete" = "Poista";
+"Done" = "Valmis";
+"Back" = "Takaisin";
+"Next" = "Seuraava";
+"Accept" = "Hyväksy";
+"Reject" = "Hylkää";
+"Yes" = "Kyllä";
+"No" = "Ei";
+"OK" = "OK";
+"Close" = "Sulje";
+"Sign in" = "Kirjaudu sisään";
+"Sign up" = "Rekisteröidy";

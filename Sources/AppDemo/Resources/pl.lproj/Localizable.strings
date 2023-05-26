@@ -1,0 +1,27 @@
+// Localized Polish (polski) strings
+"Welcome" = "Witaj";
+"Home" = "Strona główna";
+"Settings" = "Ustawienia";
+"Profile" = "Profil";
+"Save" = "Zapisz";
+"Cancel" = "Anuluj";
+"Continue" = "Kontynuuj";
+"Search" = "Szukaj";
+"Notifications" = "Powiadomienia";
+"Error" = "Błąd";
+"Retry" = "Ponów";
+"Loading" = "Ładowanie";
+"Share" = "Udostępnij";
+"Edit" = "Edytuj";
+"Delete" = "Usuń";
+"Done" = "Gotowe";
+"Back" = "Wstecz";
+"Next" = "Dalej";
+"Accept" = "Akceptuj";
+"Reject" = "Odrzuć";
+"Yes" = "Tak";
+"No" = "Nie";
+"OK" = "OK";
+"Close" = "Zamknij";
+"Sign in" = "Zaloguj się";
+"Sign up" = "Zarejestruj się";

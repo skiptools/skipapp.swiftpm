@@ -1,0 +1,27 @@
+// Localized Persian (فارسی) strings
+"Welcome" = "خوش آمدید";
+"Home" = "صفحه اصلی";
+"Settings" = "تنظیمات";
+"Profile" = "پروفایل";
+"Save" = "ذخیره";
+"Cancel" = "لغو";
+"Continue" = "ادامه";
+"Search" = "جستجو";
+"Notifications" = "اعلان‌ها";
+"Error" = "خطا";
+"Retry" = "تلاش مجدد";
+"Loading" = "بارگذاری";
+"Share" = "اشتراک‌گذاری";
+"Edit" = "ویرایش";
+"Delete" = "حذف";
+"Done" = "انجام شد";
+"Back" = "بازگشت";
+"Next" = "بعدی";
+"Accept" = "پذیرش";
+"Reject" = "رد کردن";
+"Yes" = "بله";
+"No" = "خیر";
+"OK" = "تایید";
+"Close" = "بستن";
+"Sign in" = "ورود";
+"Sign up" = "ثبت نام";

@@ -1,0 +1,27 @@
+// Localized Arabic (العربية) strings
+"Welcome" = "مرحبًا";
+"Home" = "الصفحة الرئيسية";
+"Settings" = "الإعدادات";
+"Profile" = "الملف الشخصي";
+"Save" = "حفظ";
+"Cancel" = "إلغاء";
+"Continue" = "متابعة";
+"Search" = "بحث";
+"Notifications" = "الإشعارات";
+"Error" = "خطأ";
+"Retry" = "إعادة المحاولة";
+"Loading" = "جارٍ التحميل";
+"Share" = "مشاركة";
+"Edit" = "تعديل";
+"Delete" = "حذف";
+"Done" = "تم";
+"Back" = "رجوع";
+"Next" = "التالي";
+"Accept" = "قبول";
+"Reject" = "رفض";
+"Yes" = "نعم";
+"No" = "لا";
+"OK" = "موافق";
+"Close" = "إغلاق";
+"Sign in" = "تسجيل الدخول";
+"Sign up" = "الاشتراك";

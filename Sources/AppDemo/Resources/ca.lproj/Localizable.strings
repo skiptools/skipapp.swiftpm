@@ -1,0 +1,27 @@
+// Localized Catalan (català) strings
+"Welcome" = "Benvingut";
+"Home" = "Inici";
+"Settings" = "Configuració";
+"Profile" = "Perfil";
+"Save" = "Desa";
+"Cancel" = "Cancel·la";
+"Continue" = "Continua";
+"Search" = "Cerca";
+"Notifications" = "Notificacions";
+"Error" = "Error";
+"Retry" = "Torna-ho a intentar";
+"Loading" = "Carregant";
+"Share" = "Comparteix";
+"Edit" = "Edita";
+"Delete" = "Suprimeix";
+"Done" = "Fet";
+"Back" = "Enrere";
+"Next" = "Següent";
+"Accept" = "Accepta";
+"Reject" = "Rebutja";
+"Yes" = "Sí";
+"No" = "No";
+"OK" = "D'acord";
+"Close" = "Tanca";
+"Sign in" = "Inicia sessió";
+"Sign up" = "Registra't";

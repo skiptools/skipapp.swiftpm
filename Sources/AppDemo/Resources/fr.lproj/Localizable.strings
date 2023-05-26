@@ -1,0 +1,27 @@
+// Localized French (français) strings
+"Welcome" = "Bienvenue";
+"Home" = "Accueil";
+"Settings" = "Paramètres";
+"Profile" = "Profil";
+"Save" = "Enregistrer";
+"Cancel" = "Annuler";
+"Continue" = "Continuer";
+"Search" = "Rechercher";
+"Notifications" = "Notifications";
+"Error" = "Erreur";
+"Retry" = "Réessayer";
+"Loading" = "Chargement";
+"Share" = "Partager";
+"Edit" = "Modifier";
+"Delete" = "Supprimer";
+"Done" = "Terminé";
+"Back" = "Retour";
+"Next" = "Suivant";
+"Accept" = "Accepter";
+"Reject" = "Rejeter";
+"Yes" = "Oui";
+"No" = "Non";
+"OK" = "OK";
+"Close" = "Fermer";
+"Sign in" = "Se connecter";
+"Sign up" = "S'inscrire";

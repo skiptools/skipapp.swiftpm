@@ -1,0 +1,27 @@
+// Localized Chinese (中文) strings
+"Welcome" = "欢迎";
+"Home" = "首页";
+"Settings" = "设置";
+"Profile" = "个人资料";
+"Save" = "保存";
+"Cancel" = "取消";
+"Continue" = "继续";
+"Search" = "搜索";
+"Notifications" = "通知";
+"Error" = "错误";
+"Retry" = "重试";
+"Loading" = "加载中";
+"Share" = "分享";
+"Edit" = "编辑";
+"Delete" = "删除";
+"Done" = "完成";
+"Back" = "返回";
+"Next" = "下一步";
+"Accept" = "接受";
+"Reject" = "拒绝";
+"Yes" = "是";
+"No" = "否";
+"OK" = "确定";
+"Close" = "关闭";
+"Sign in" = "登录";
+"Sign up" = "注册";

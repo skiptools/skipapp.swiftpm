@@ -1,0 +1,27 @@
+// Localized Hebrew (עברית) strings
+"Welcome" = "ברוך הבא";
+"Home" = "בית";
+"Settings" = "הגדרות";
+"Profile" = "פרופיל";
+"Save" = "שמירה";
+"Cancel" = "ביטול";
+"Continue" = "המשך";
+"Search" = "חיפוש";
+"Notifications" = "התראות";
+"Error" = "שגיאה";
+"Retry" = "נסה שוב";
+"Loading" = "טוען";
+"Share" = "שתף";
+"Edit" = "עריכה";
+"Delete" = "מחק";
+"Done" = "בוצע";
+"Back" = "חזור";
+"Next" = "הבא";
+"Accept" = "קבל";
+"Reject" = "דחה";
+"Yes" = "כן";
+"No" = "לא";
+"OK" = "אישור";
+"Close" = "סגור";
+"Sign in" = "התחבר";
+"Sign up" = "הירשם";

@@ -1,0 +1,27 @@
+// Localized Italian (italiano) strings
+"Welcome" = "Benvenuto";
+"Home" = "Home";
+"Settings" = "Impostazioni";
+"Profile" = "Profilo";
+"Save" = "Salva";
+"Cancel" = "Annulla";
+"Continue" = "Continua";
+"Search" = "Cerca";
+"Notifications" = "Notifiche";
+"Error" = "Errore";
+"Retry" = "Riprova";
+"Loading" = "Caricamento";
+"Share" = "Condividi";
+"Edit" = "Modifica";
+"Delete" = "Elimina";
+"Done" = "Fatto";
+"Back" = "Indietro";
+"Next" = "Avanti";
+"Accept" = "Accetta";
+"Reject" = "Rifiuta";
+"Yes" = "Sì";
+"No" = "No";
+"OK" = "OK";
+"Close" = "Chiudi";
+"Sign in" = "Accedi";
+"Sign up" = "Iscriviti";

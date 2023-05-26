@@ -1,0 +1,27 @@
+// Localized Danish (dansk) strings
+"Welcome" = "Velkommen";
+"Home" = "Hjem";
+"Settings" = "Indstillinger";
+"Profile" = "Profil";
+"Save" = "Gem";
+"Cancel" = "Annuller";
+"Continue" = "Fortsæt";
+"Search" = "Søg";
+"Notifications" = "Underretninger";
+"Error" = "Fejl";
+"Retry" = "Prøv igen";
+"Loading" = "Indlæser";
+"Share" = "Del";
+"Edit" = "Rediger";
+"Delete" = "Slet";
+"Done" = "Færdig";
+"Back" = "Tilbage";
+"Next" = "Næste";
+"Accept" = "Accepter";
+"Reject" = "Afvis";
+"Yes" = "Ja";
+"No" = "Nej";
+"OK" = "OK";
+"Close" = "Luk";
+"Sign in" = "Log ind";
+"Sign up" = "Opret profil";

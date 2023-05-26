@@ -1,0 +1,27 @@
+// Localized Turkish (Türkçe) strings
+"Welcome" = "Hoş geldiniz";
+"Home" = "Ana Sayfa";
+"Settings" = "Ayarlar";
+"Profile" = "Profil";
+"Save" = "Kaydet";
+"Cancel" = "İptal";
+"Continue" = "Devam Et";
+"Search" = "Ara";
+"Notifications" = "Bildirimler";
+"Error" = "Hata";
+"Retry" = "Yeniden Dene";
+"Loading" = "Yükleniyor";
+"Share" = "Paylaş";
+"Edit" = "Düzenle";
+"Delete" = "Sil";
+"Done" = "Tamam";
+"Back" = "Geri";
+"Next" = "İleri";
+"Accept" = "Kabul Et";
+"Reject" = "Reddet";
+"Yes" = "Evet";
+"No" = "Hayır";
+"OK" = "Tamam";
+"Close" = "Kapat";
+"Sign in" = "Giriş Yap";
+"Sign up" = "Kaydol";

@@ -1,0 +1,27 @@
+// Localized German (Deutsch) strings
+"Welcome" = "Willkommen";
+"Home" = "Startseite";
+"Settings" = "Einstellungen";
+"Profile" = "Profil";
+"Save" = "Speichern";
+"Cancel" = "Abbrechen";
+"Continue" = "Weiter";
+"Search" = "Suchen";
+"Notifications" = "Benachrichtigungen";
+"Error" = "Fehler";
+"Retry" = "Wiederholen";
+"Loading" = "Wird geladen";
+"Share" = "Teilen";
+"Edit" = "Bearbeiten";
+"Delete" = "Löschen";
+"Done" = "Fertig";
+"Back" = "Zurück";
+"Next" = "Weiter";
+"Accept" = "Akzeptieren";
+"Reject" = "Ablehnen";
+"Yes" = "Ja";
+"No" = "Nein";
+"OK" = "OK";
+"Close" = "Schließen";
+"Sign in" = "Anmelden";
+"Sign up" = "Registrieren";

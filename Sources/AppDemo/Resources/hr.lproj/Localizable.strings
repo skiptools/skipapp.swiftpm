@@ -1,0 +1,27 @@
+// Localized Croatian (hrvatski) strings
+"Welcome" = "Dobrodošli";
+"Home" = "Početna";
+"Settings" = "Postavke";
+"Profile" = "Profil";
+"Save" = "Spremi";
+"Cancel" = "Odustani";
+"Continue" = "Nastavi";
+"Search" = "Pretraživanje";
+"Notifications" = "Obavijesti";
+"Error" = "Pogreška";
+"Retry" = "Pokušaj ponovno";
+"Loading" = "Učitavanje";
+"Share" = "Podijeli";
+"Edit" = "Uredi";
+"Delete" = "Izbriši";
+"Done" = "Gotovo";
+"Back" = "Natrag";
+"Next" = "Sljedeće";
+"Accept" = "Prihvati";
+"Reject" = "Odbij";
+"Yes" = "Da";
+"No" = "Ne";
+"OK" = "U redu";
+"Close" = "Zatvori";
+"Sign in" = "Prijava";
+"Sign up" = "Registracija";

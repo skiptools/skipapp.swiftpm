@@ -1,0 +1,27 @@
+// Localized Japanese (日本語) strings
+"Welcome" = "ようこそ";
+"Home" = "ホーム";
+"Settings" = "設定";
+"Profile" = "プロフィール";
+"Save" = "保存";
+"Cancel" = "キャンセル";
+"Continue" = "続ける";
+"Search" = "検索";
+"Notifications" = "通知";
+"Error" = "エラー";
+"Retry" = "リトライ";
+"Loading" = "読み込み中";
+"Share" = "共有";
+"Edit" = "編集";
+"Delete" = "削除";
+"Done" = "完了";
+"Back" = "戻る";
+"Next" = "次へ";
+"Accept" = "承諾";
+"Reject" = "拒否";
+"Yes" = "はい";
+"No" = "いいえ";
+"OK" = "OK";
+"Close" = "閉じる";
+"Sign in" = "サインイン";
+"Sign up" = "サインアップ";

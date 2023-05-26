@@ -40,6 +40,7 @@ let products: [Product] = [
 
 let package = Package(
     name: "Demo App",
+    defaultLocalization: "en",
     platforms: [
         .macOS("13"),
         .iOS("16"),
@@ -65,7 +66,9 @@ let package = Package(
         .target(
             name: "AppDemo",
             dependencies: [
-                .product(name: "SkipUI", package: "skiphub")
+            ],
+            resources: [
+                .process("Resources")
             ],
             plugins: [
                 //.plugin(name: "preflight", package: "skip")

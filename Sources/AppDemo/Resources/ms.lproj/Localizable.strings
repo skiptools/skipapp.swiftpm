@@ -1,0 +1,27 @@
+// Localized Malay (Bahasa Melayu) strings
+"Welcome" = "Selamat datang";
+"Home" = "Laman Utama";
+"Settings" = "Tetapan";
+"Profile" = "Profil";
+"Save" = "Simpan";
+"Cancel" = "Batal";
+"Continue" = "Teruskan";
+"Search" = "Cari";
+"Notifications" = "Pemberitahuan";
+"Error" = "Ralat";
+"Retry" = "Cuba Lagi";
+"Loading" = "Memuatkan";
+"Share" = "Kongsi";
+"Edit" = "Edit";
+"Delete" = "Padam";
+"Done" = "Selesai";
+"Back" = "Kembali";
+"Next" = "Seterusnya";
+"Accept" = "Terima";
+"Reject" = "Tolak";
+"Yes" = "Ya";
+"No" = "Tidak";
+"OK" = "OK";
+"Close" = "Tutup";
+"Sign in" = "Log masuk";
+"Sign up" = "Daftar masuk";

@@ -1,9 +1,7 @@
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
-import SkipUI
-import SkipKit
-import JavaScriptCore
+import SwiftUI
 import Foundation
 import OSLog
 
@@ -176,8 +174,10 @@ let entries: [Entry] = try! createEntries()
 private func createEntries() throws -> [Entry] {
     var entries: [Entry] = []
     do {
-        logger.info("initializaing app table contents…")
+        logger.info("initializing app table contents…")
         entries += try leadingEntries()
+
+        entries += try localeEntries()
 
         entries += try systemEntries()
 
@@ -206,6 +206,47 @@ private func leadingEntries() throws -> [Entry] {
     ]
 }
 
+private func localeEntries() throws -> [Entry] {
+    var entries: [Entry] = []
+    do {
+        logger.info("building locales…")
+
+        #if SKIP
+        do {
+            // SKIP REPLACE: val skipClass = SkipBundle::class
+            let skipClass = SkipBundle.self
+            let jc = skipClass.java
+            // emulator: libcore.io.ClassPathURLStreamHandler$ClassPathURLConnection$1@cf3f537
+            let res = jc.getResourceAsStream("Resources/README.txt")
+            logger.info("README: \(res)")
+        } catch {
+            logger.info("ERROR WITH README: \(error)")
+        }
+        #endif
+
+        // locale bundle URL: jar:file:/data/app/~~f7vjznjDXBAE3l2JJgNqoA==/app.demo-XRrtjk9P5XnebUZ1yq--gw==/base.apk!/skip/foundation/Resources/
+        logger.info("locale bundle URL: \(Bundle.module.bundleURL)")
+
+        let locales = Bundle.module.localizations.sorted()
+        
+        logger.info("bundle locales: \(locales)")
+        for locale in locales {
+            entries.append(Entry(title: "Locale: \(locale)"))
+        }
+    } catch {
+        logger.error("error building locales: \(error)")
+        entries.append(Entry(title: "Locale error: \(error)"))
+
+        #if SKIP
+        if error is java.lang.Throwable {
+            error.printStackTrace()
+        }
+        #endif
+    }
+
+    return entries
+}
+
 private func systemEntries() throws -> [Entry] {
     //let hostname = ProcessInfo.processInfo.hostName // Android error: "android.os.NetworkOnMainThreadException" from "java.net.Inet6AddressImpl.lookupHostByName"
 
@@ -216,18 +257,22 @@ private func systemEntries() throws -> [Entry] {
     }
 
     do {
-        let db = try SQLContext()
-        defer { db.close() }
-        let sum = try db.query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
-        entries.append(Entry(title: "SQL: \(sum)"))
+        entries.append(Entry(title: "fr: \(NSLocalizedString("Hello", bundle: Bundle.module, comment: "greeting text"))"))
     }
 
-    #if !SKIP // skip.lib.ErrorException: java.lang.UnsatisfiedLinkError: Native library
-    do {
-        let script = JSContext().evaluateScript("'Scr'+'ipt'").toString() ?? ""
-        entries.append(Entry(title: "Java: \(script)"))
-    }
-    #endif
+    //do {
+    //    let db = try SQLContext()
+    //    defer { db.close() }
+    //    let sum = try db.query(sql: "SELECT 'Li'||'te'").nextRow(close: true)?.first?.textValue ?? "NONE"
+    //    entries.append(Entry(title: "SQL: \(sum)"))
+    //}
+
+    //#if !SKIP // skip.lib.ErrorException: java.lang.UnsatisfiedLinkError: Native library
+    //do {
+    //    let script = JSContext().evaluateScript("'Scr'+'ipt'").toString() ?? ""
+    //    entries.append(Entry(title: "Java: \(script)"))
+    //}
+    //#endif
 
     #if SKIP
     func addSystemProperty(_ key: String) {

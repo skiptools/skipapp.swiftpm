@@ -1,0 +1,27 @@
+// Localized English (English) strings
+"Welcome" = "Welcome";
+"Home" = "Home";
+"Settings" = "Settings";
+"Profile" = "Profile";
+"Save" = "Save";
+"Cancel" = "Cancel";
+"Continue" = "Continue";
+"Search" = "Search";
+"Notifications" = "Notifications";
+"Error" = "Error";
+"Retry" = "Retry";
+"Loading" = "Loading";
+"Share" = "Share";
+"Edit" = "Edit";
+"Delete" = "Delete";
+"Done" = "Done";
+"Back" = "Back";
+"Next" = "Next";
+"Accept" = "Accept";
+"Reject" = "Reject";
+"Yes" = "Yes";
+"No" = "No";
+"OK" = "OK";
+"Close" = "Close";
+"Sign in" = "Sign in";
+"Sign up" = "Sign up";

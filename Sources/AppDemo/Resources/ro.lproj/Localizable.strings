@@ -1,0 +1,27 @@
+// Localized Romanian (română) strings
+"Welcome" = "Bun venit";
+"Home" = "Acasă";
+"Settings" = "Setări";
+"Profile" = "Profil";
+"Save" = "Salvează";
+"Cancel" = "Anulează";
+"Continue" = "Continuă";
+"Search" = "Căutare";
+"Notifications" = "Notificări";
+"Error" = "Eroare";
+"Retry" = "Reîncercă";
+"Loading" = "Se încarcă";
+"Share" = "Partajează";
+"Edit" = "Editează";
+"Delete" = "Șterge";
+"Done" = "Gata";
+"Back" = "Înapoi";
+"Next" = "Următor";
+"Accept" = "Acceptă";
+"Reject" = "Respinge";
+"Yes" = "Da";
+"No" = "Nu";
+"OK" = "OK";
+"Close" = "Închide";
+"Sign in" = "Autentificare";
+"Sign up" = "Înregistrare";

@@ -1,0 +1,27 @@
+// Localized Chinese (中文) strings
+"Welcome" = "歡迎";
+"Home" = "首頁";
+"Settings" = "設定";
+"Profile" = "個人檔案";
+"Save" = "儲存";
+"Cancel" = "取消";
+"Continue" = "繼續";
+"Search" = "搜尋";
+"Notifications" = "通知";
+"Error" = "錯誤";
+"Retry" = "重試";
+"Loading" = "載入中";
+"Share" = "分享";
+"Edit" = "編輯";
+"Delete" = "刪除";
+"Done" = "完成";
+"Back" = "返回";
+"Next" = "下一步";
+"Accept" = "接受";
+"Reject" = "拒絕";
+"Yes" = "是";
+"No" = "否";
+"OK" = "確定";
+"Close" = "關閉";
+"Sign in" = "登入";
+"Sign up" = "註冊";

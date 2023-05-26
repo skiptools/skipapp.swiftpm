@@ -1,0 +1,27 @@
+// Localized Norwegian (norsk) strings
+"Welcome" = "Velkommen";
+"Home" = "Hjem";
+"Settings" = "Innstillinger";
+"Profile" = "Profil";
+"Save" = "Lagre";
+"Cancel" = "Avbryt";
+"Continue" = "Fortsett";
+"Search" = "Søk";
+"Notifications" = "Varsler";
+"Error" = "Feil";
+"Retry" = "Prøv igjen";
+"Loading" = "Laster";
+"Share" = "Del";
+"Edit" = "Rediger";
+"Delete" = "Slett";
+"Done" = "Ferdig";
+"Back" = "Tilbake";
+"Next" = "Neste";
+"Accept" = "Godta";
+"Reject" = "Avvis";
+"Yes" = "Ja";
+"No" = "Nei";
+"OK" = "OK";
+"Close" = "Lukk";
+"Sign in" = "Logg inn";
+"Sign up" = "Registrer deg";

@@ -1,0 +1,27 @@
+// Localized Korean (한국어) strings
+"Welcome" = "환영합니다";
+"Home" = "홈";
+"Settings" = "설정";
+"Profile" = "프로필";
+"Save" = "저장";
+"Cancel" = "취소";
+"Continue" = "계속";
+"Search" = "검색";
+"Notifications" = "알림";
+"Error" = "오류";
+"Retry" = "다시 시도";
+"Loading" = "로딩 중";
+"Share" = "공유";
+"Edit" = "편집";
+"Delete" = "삭제";
+"Done" = "완료";
+"Back" = "뒤로";
+"Next" = "다음";
+"Accept" = "수락";
+"Reject" = "거절";
+"Yes" = "예";
+"No" = "아니요";
+"OK" = "확인";
+"Close" = "닫기";
+"Sign in" = "로그인";
+"Sign up" = "가입하기";

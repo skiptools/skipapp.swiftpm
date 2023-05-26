@@ -1,0 +1,27 @@
+// Localized Swedish (svenska) strings
+"Welcome" = "Välkommen";
+"Home" = "Hem";
+"Settings" = "Inställningar";
+"Profile" = "Profil";
+"Save" = "Spara";
+"Cancel" = "Avbryt";
+"Continue" = "Fortsätt";
+"Search" = "Sök";
+"Notifications" = "Aviseringar";
+"Error" = "Fel";
+"Retry" = "Försök igen";
+"Loading" = "Laddar";
+"Share" = "Dela";
+"Edit" = "Redigera";
+"Delete" = "Ta bort";
+"Done" = "Klar";
+"Back" = "Tillbaka";
+"Next" = "Nästa";
+"Accept" = "Acceptera";
+"Reject" = "Avvisa";
+"Yes" = "Ja";
+"No" = "Nej";
+"OK" = "OK";
+"Close" = "Stäng";
+"Sign in" = "Logga in";
+"Sign up" = "Registrera dig";

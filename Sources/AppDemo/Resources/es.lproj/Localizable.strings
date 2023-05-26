@@ -1,0 +1,27 @@
+// Localized Spanish (español) strings
+"Welcome" = "Bienvenido";
+"Home" = "Inicio";
+"Settings" = "Configuración";
+"Profile" = "Perfil";
+"Save" = "Guardar";
+"Cancel" = "Cancelar";
+"Continue" = "Continuar";
+"Search" = "Buscar";
+"Notifications" = "Notificaciones";
+"Error" = "Error";
+"Retry" = "Reintentar";
+"Loading" = "Cargando";
+"Share" = "Compartir";
+"Edit" = "Editar";
+"Delete" = "Eliminar";
+"Done" = "Hecho";
+"Back" = "Volver";
+"Next" = "Siguiente";
+"Accept" = "Aceptar";
+"Reject" = "Rechazar";
+"Yes" = "Sí";
+"No" = "No";
+"OK" = "OK";
+"Close" = "Cerrar";
+"Sign in" = "Iniciar sesión";
+"Sign up" = "Registrarse";

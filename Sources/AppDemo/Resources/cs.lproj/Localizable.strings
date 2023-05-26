@@ -1,0 +1,27 @@
+// Localized Czech (čeština) strings
+"Welcome" = "Vítejte";
+"Home" = "Domů";
+"Settings" = "Nastavení";
+"Profile" = "Profil";
+"Save" = "Uložit";
+"Cancel" = "Zrušit";
+"Continue" = "Pokračovat";
+"Search" = "Hledat";
+"Notifications" = "Oznámení";
+"Error" = "Chyba";
+"Retry" = "Opakovat";
+"Loading" = "Načítání";
+"Share" = "Sdílet";
+"Edit" = "Upravit";
+"Delete" = "Smazat";
+"Done" = "Hotovo";
+"Back" = "Zpět";
+"Next" = "Další";
+"Accept" = "Přijmout";
+"Reject" = "Odmítnout";
+"Yes" = "Ano";
+"No" = "Ne";
+"OK" = "OK";
+"Close" = "Zavřít";
+"Sign in" = "Přihlásit se";
+"Sign up" = "Registrovat se";

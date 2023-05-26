@@ -1,0 +1,27 @@
+// Localized Dutch (Nederlands) strings
+"Welcome" = "Welkom";
+"Home" = "Home";
+"Settings" = "Instellingen";
+"Profile" = "Profiel";
+"Save" = "Opslaan";
+"Cancel" = "Annuleren";
+"Continue" = "Doorgaan";
+"Search" = "Zoeken";
+"Notifications" = "Meldingen";
+"Error" = "Fout";
+"Retry" = "Opnieuw proberen";
+"Loading" = "Laden";
+"Share" = "Delen";
+"Edit" = "Bewerken";
+"Delete" = "Verwijderen";
+"Done" = "Gereed";
+"Back" = "Terug";
+"Next" = "Volgende";
+"Accept" = "Accepteren";
+"Reject" = "Weigeren";
+"Yes" = "Ja";
+"No" = "Nee";
+"OK" = "OK";
+"Close" = "Sluiten";
+"Sign in" = "Aanmelden";
+"Sign up" = "Registreren";

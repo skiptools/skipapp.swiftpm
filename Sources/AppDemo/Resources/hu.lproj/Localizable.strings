@@ -1,0 +1,27 @@
+// Localized Hungarian (magyar) strings
+"Welcome" = "Üdvözöljük";
+"Home" = "Főoldal";
+"Settings" = "Beállítások";
+"Profile" = "Profil";
+"Save" = "Mentés";
+"Cancel" = "Mégse";
+"Continue" = "Folytatás";
+"Search" = "Keresés";
+"Notifications" = "Értesítések";
+"Error" = "Hiba";
+"Retry" = "Újra";
+"Loading" = "Betöltés";
+"Share" = "Megosztás";
+"Edit" = "Szerkesztés";
+"Delete" = "Törlés";
+"Done" = "Kész";
+"Back" = "Vissza";
+"Next" = "Következő";
+"Accept" = "Elfogadás";
+"Reject" = "Elutasítás";
+"Yes" = "Igen";
+"No" = "Nem";
+"OK" = "OK";
+"Close" = "Bezárás";
+"Sign in" = "Bejelentkezés";
+"Sign up" = "Regisztráció";

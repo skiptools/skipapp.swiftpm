@@ -1,0 +1,27 @@
+// Localized Vietnamese (Tiếng Việt) strings
+"Welcome" = "Chào mừng";
+"Home" = "Trang chủ";
+"Settings" = "Cài đặt";
+"Profile" = "Hồ sơ";
+"Save" = "Lưu";
+"Cancel" = "Hủy";
+"Continue" = "Tiếp tục";
+"Search" = "Tìm kiếm";
+"Notifications" = "Thông báo";
+"Error" = "Lỗi";
+"Retry" = "Thử lại";
+"Loading" = "Đang tải";
+"Share" = "Chia sẻ";
+"Edit" = "Chỉnh sửa";
+"Delete" = "Xóa";
+"Done" = "Hoàn tất";
+"Back" = "Quay lại";
+"Next" = "Tiếp theo";
+"Accept" = "Chấp nhận";
+"Reject" = "Từ chối";
+"Yes" = "Có";
+"No" = "Không";
+"OK" = "OK";
+"Close" = "Đóng";
+"Sign in" = "Đăng nhập";
+"Sign up" = "Đăng ký";
