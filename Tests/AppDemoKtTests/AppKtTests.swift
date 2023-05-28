@@ -34,7 +34,7 @@ final class AppKtTests: XCTestCase, XCGradleHarness {
             try await launchAPK(device: device, appid: "app.demo/.MainActivity", log: ["app.demo:V", "app.demo.App:V", "AndroidRuntime:V", "*:S"],
                 apk: apk)
         } else {
-            try await gradle(actions: ["test"])
+            try await gradle(actions: ["testDebug"])
         }
     }
 }
