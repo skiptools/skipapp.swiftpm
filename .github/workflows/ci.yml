@@ -34,13 +34,6 @@ jobs:
       - name: Prepare Artifacts
         run: |
           mkdir -p .build/skip-artifacts/
-
-          cat > .build/skip-artifacts/relnotes.md << EOF
-          These are the checksums for the release artifacts:
-          EOF
-
-          echo '```' >> .build/skip-artifacts/relnotes.md
-
           brew install tree
 
       - name: Build AppDemoKt (SPM)
@@ -62,12 +55,12 @@ jobs:
           ARTIFACTNAME="App-Android-Debug.apk"
           ls -la "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> relnotes.md
+          cat "${ARTIFACTNAME}.sha256" >> checksums.txt
 
           ARTIFACTNAME="App-Android-Release.apk"
           ls -la "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> relnotes.md
+          cat "${ARTIFACTNAME}.sha256" >> checksums.txt
 
       - name: Test AppDemoKt (Xcode)
         if: false
@@ -81,7 +74,7 @@ jobs:
           build_archive() {
             APPARTIFACT="${APPNAME}-${APPPLATFORM}-${APPCONFIG}"
 
-            xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO || echo "archive failed"
+            __XCODE_BUILT_PRODUCTS_DIR_PATHS="bogus_for_skiptool" xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
 
             cd .build/"${APPARTIFACT}".xcarchive/Products/
 
@@ -96,7 +89,7 @@ jobs:
             cd .build/skip-artifacts/
             ls -la "${APPARTIFACT}.ipa"
             shasum -a 256 "${APPARTIFACT}.ipa" | tee "${APPARTIFACT}.ipa.sha256"
-            cat "${APPARTIFACT}.ipa.sha256" >> relnotes.md
+            cat "${APPARTIFACT}.ipa.sha256" >> checksums.txt
             cd -
           }
 
@@ -124,7 +117,7 @@ jobs:
           unzip -t "${ARTIFACTNAME}"
           ls -lah "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> relnotes.md
+          cat "${ARTIFACTNAME}.sha256" >> checksums.txt
 
 
       - name: "Create Release"
@@ -136,7 +129,17 @@ jobs:
           echo "Creating release: ${TAG}"
           cd .build/skip-artifacts/
 
+          # verify all the artifact checksums
+          shasum -a 256 -c checksums.txt
+
           # finish the checksums block in the release notes
+
+          cat > relnotes.md << EOF
+          These are the checksums for the release artifacts:
+          EOF
+
+          echo '```' >> relnotes.md
+          cat checksums.txt >> relnotes.md
           echo '```' >> relnotes.md
 
           gh release create "${TAG}" --prerelease --title "Release ${TAG}" -F relnotes.md
