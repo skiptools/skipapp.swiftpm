@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 jobs:
-  skip-template-tests:
+  skipapp:
     runs-on: macos-13
     steps:
       - name: Setup Java

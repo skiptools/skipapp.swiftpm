@@ -64,7 +64,7 @@ public class MainActivity : androidx.appcompat.app.AppCompatActivity {
 
 // SKIP DECLARE: @Composable fun AhoyView()
 struct AhoyView : View {
-    public let text = "🏴‍☠️ Ahoy Skipper!!!! 🏴‍☠️"
+    public let text = "🏴‍☠️ Ahoy Skipper! 🏴‍☠️"
 
     // SKIP REPLACE: Text(text, style = MaterialTheme.typography.subtitle1, modifier = Modifier.fillMaxWidth())
     var body: some View { Text(text).font(.subheadline) }
@@ -213,8 +213,8 @@ private func localeEntries() throws -> [Entry] {
 
         #if SKIP
         do {
-            // SKIP REPLACE: val skipClass = SkipBundle::class
-            let skipClass = SkipBundle.self
+            // SKIP REPLACE: val skipClass = Bundle::class
+            let skipClass = Bundle.self
             let jc = skipClass.java
             // emulator: libcore.io.ClassPathURLStreamHandler$ClassPathURLConnection$1@cf3f537
             let res = jc.getResourceAsStream("Resources/README.txt")
