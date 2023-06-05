@@ -74,6 +74,11 @@ jobs:
           build_archive() {
             APPARTIFACT="${APPNAME}-${APPPLATFORM}-${APPCONFIG}"
 
+            # need to build and archive in separate steps to work around
+            # skipcode creation timing
+
+            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild build -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
+
             BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
 
             cd .build/"${APPARTIFACT}".xcarchive/Products/
