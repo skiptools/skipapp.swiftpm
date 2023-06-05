@@ -102,6 +102,8 @@ jobs:
           APPPLATFORM="iOS"
           APPSDK="iphoneos"
 
+          # need to try building multiple times to work around with
+          # skiptool build ordering
           APPCONFIG="Debug" build_archive || APPCONFIG="Debug" build_archive || APPCONFIG="Debug" build_archive || APPCONFIG="Debug" build_archive || APPCONFIG="Debug" build_archive || APPCONFIG="Debug" build_archive
 
           APPCONFIG="Release" build_archive || APPCONFIG="Release" build_archive || APPCONFIG="Release" build_archive || APPCONFIG="Release" build_archive || APPCONFIG="Release" build_archive || APPCONFIG="Release" build_archive
